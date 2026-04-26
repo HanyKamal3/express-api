@@ -4,7 +4,7 @@ let books = [
   { id: 3, title: "You Don't Know JS", author: 'Kyle Simpson' },
 ];
 
-export const getAllBooks = (req, res, next) => {
+export const getAllBooks = async (req, res, next) => {
   try {
     res.status(200).json(books);
   } catch (err) {
@@ -12,7 +12,7 @@ export const getAllBooks = (req, res, next) => {
   }
 };
 
-export const getBookById = (req, res, next) => {
+export const getBookById = async (req, res, next) => {
   try {
     const book = books.find((b) => b.id === parseInt(req.params.id));
     if (!book) return res.status(404).json({ message: 'Book not found' });
@@ -22,7 +22,7 @@ export const getBookById = (req, res, next) => {
   }
 };
 
-export const createBook = (req, res, next) => {
+export const createBook = async (req, res, next) => {
   try {
     const { title, author } = req.body;
     if (!title || !author)
@@ -35,7 +35,7 @@ export const createBook = (req, res, next) => {
   }
 };
 
-export const updateBook = (req, res, next) => {
+export const updateBook = async (req, res, next) => {
   try {
     const book = books.find((b) => b.id === parseInt(req.params.id));
     if (!book) return res.status(404).json({ message: 'Book not found' });
@@ -50,7 +50,7 @@ export const updateBook = (req, res, next) => {
   }
 };
 
-export const deleteBook = (req, res, next) => {
+export const deleteBook = async (req, res, next) => {
   try {
     const index = books.findIndex((b) => b.id === parseInt(req.params.id));
     if (index === -1)
