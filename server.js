@@ -4,7 +4,8 @@ import logger from './middleware/logger.js';
 import requestTime from './middleware/requestTime.js';
 import bookRoutes from './routes/bookRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
-import connetDB from './config/db.js';
+import connectDB from './config/db.js';
+import authorRoutes from './routes/authorRoutes.js';
 
 dotenv.config();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(logger);
 app.use(requestTime);
 app.use('/books', bookRoutes);
+app.use('/authors', authorRoutes);
 
 // Routes
 app.get('/', (req, res) => {
@@ -33,7 +35,7 @@ app.use((req, res) => {
 
 app.use(errorHandler);
 
-connetDB();
+connectDB();
 
 // Start server
 app.listen(PORT, () => {
