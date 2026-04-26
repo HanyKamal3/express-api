@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import logger from './middleware/logger.js';
 import requestTime from './middleware/requestTime.js';
 import bookRoutes from './routes/bookRoutes.js';
+import errorHandler from './middleware/errorHandler.js';
 
 dotenv.config();
 
@@ -29,6 +30,8 @@ app.get('/about', (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ message: 'Route not found' });
 });
+
+app.use(errorHandler);
 
 // Start server
 
