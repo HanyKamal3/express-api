@@ -2,7 +2,7 @@ import Book from '../models/bookModel.js';
 
 export const getAllBooks = async (req, res, next) => {
   try {
-    const books = await Book.find();
+    const books = await Book.find().populate('author');
     res.status(200).json(books);
   } catch (err) {
     next(err);
@@ -11,7 +11,7 @@ export const getAllBooks = async (req, res, next) => {
 
 export const getBookById = async (req, res, next) => {
   try {
-    const book = await Book.findById(req.params.id);
+    const book = await Book.findById(req.params.id).populate('author');
     if (!book) return res.status(404).json({ message: 'Book not found' });
     res.status(200).json(book);
   } catch (err) {
