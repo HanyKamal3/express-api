@@ -6,6 +6,7 @@ import bookRoutes from './routes/bookRoutes.js';
 import errorHandler from './middleware/errorHandler.js';
 import connectDB from './config/db.js';
 import authorRoutes from './routes/authorRoutes.js';
+import authRoutes from './routes/authRoutes.js';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ app.use(logger);
 app.use(requestTime);
 app.use('/books', bookRoutes);
 app.use('/authors', authorRoutes);
+app.use('/auth', authRoutes);
 
 // Routes
 app.get('/', (req, res) => {
