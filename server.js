@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import logger from './middleware/logger.js';
 import requestTime from './middleware/requestTime.js';
 import bookRoutes from './routes/bookRoutes.js';
@@ -15,6 +16,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 app.use(logger);
 app.use(requestTime);
 app.use('/books', bookRoutes);
